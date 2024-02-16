@@ -1,6 +1,41 @@
 import React,{useState} from "react";
 
 const Dragdrop = () => {
+
+    const [swapinput, setInput] = useState('');
+    const [adddata, setData] = useState([]);
+    const [newdata, setSwapData] = useState([]);
+
+    const HandleInput = (e) => {
+        e.preventDefault();
+        setInput(e.target.value);
+    }
+
+    const HandleSubmit = () => {
+        if (swapinput.trim() != '') 
+        {
+            setData([...adddata, swapinput]);
+            setInput('');
+        }
+        else{
+            alert("Please Add Some Value");
+        }
+    }
+
+    const HandleSwap = (index) => 
+    {
+        const itemToRemove = adddata[index];
+        setSwapData([...newdata, itemToRemove]);
+
+        const adddataCopy = adddata.filter((item, i) => console.log(item));
+        setData(adddataCopy);
+    }
+
+    const HandleRevertSwap = () =>
+    {
+        // const 
+    }
+
     return (
         <>
             <div className="dragdrop">
@@ -10,10 +45,10 @@ const Dragdrop = () => {
                             <div className="col-md-12">
                                 <div className="myHead">
                                     <h1>Swap the box</h1>
-                                    <form>
+                                    <form onSubmit={(e) => e.preventDefault()}>
                                         <div className="myboxinput">
-                                            <input type="text" className="form-control" />
-                                            <button type="button">Add</button>
+                                            <input type="text" className="form-control" value={swapinput} onChange={HandleInput} />
+                                            <button type="button" onClick={HandleSubmit}>Add</button>
                                         </div>
                                     </form>
                                 </div>
@@ -22,30 +57,22 @@ const Dragdrop = () => {
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="boxsides">
-                                    <div className="boxess">
-                                        Rabsha Shakeel 
-                                        <a href="#">>></a>
-                                    </div>
-                                    <div className="boxess">
-                                        Aazan Pathan 
-                                        <a href="#">>></a>
-                                    </div>
-                                    <div className="boxess">
-                                        Samad Khalid 
-                                        <a href="#">>></a>
-                                    </div>
-                                    <div className="boxess">
-                                        Osama Nadeem 
-                                        <a href="#">>></a>
-                                    </div>
+                                    {adddata.map((results,index) => (
+                                        <div className="boxess" key={index}>
+                                            {results}
+                                            <a href="#" onClick={() => HandleSwap(index)}>>></a>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="boxsides">
-                                    <div className="boxess">
-                                        <a href="#">>></a>
-                                        Osama Nadeem 
-                                    </div>
+                                    {newdata.map((value, num) => (
+                                        <div className="boxess" key={num}>
+                                            {value}
+                                            <a href="#" onClick={() => HandleRevertSwap(num)}>>></a>
+                                        </div> 
+                                    ))}
                                 </div>
                             </div>
                         </div>
