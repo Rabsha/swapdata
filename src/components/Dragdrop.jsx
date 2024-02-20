@@ -74,7 +74,7 @@ const Dragdrop = () => {
                                     {newdata.map((value, num) => (
                                         <div className="boxess" key={num}>
                                             {value}
-                                            <a href="#" onClick={() => HandleRevertSwap(num)}>>></a>
+                                            <a href="#" className="myround" onClick={() => HandleRevertSwap(num)}>>></a>
                                         </div> 
                                     ))}
                                 </div>
