@@ -48,7 +48,7 @@ const Dragdrop = () => {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="myHead">
-                                    <h1>Swap the box</h1>
+                                    <h1>Swap the Data</h1>
                                     <form onSubmit={(e) => e.preventDefault()}>
                                         <div className="myboxinput">
                                             <input type="text" className="form-control" value={swapinput} onChange={HandleInput} />
