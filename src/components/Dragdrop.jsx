@@ -27,13 +27,17 @@ const Dragdrop = () => {
         const itemToRemove = adddata[index];
         setSwapData([...newdata, itemToRemove]);
 
-        const adddataCopy = adddata.filter((item, i) => console.log(item));
+        const adddataCopy = adddata.filter((item, i) => i !== index);
         setData(adddataCopy);
     }
 
-    const HandleRevertSwap = () =>
+    const HandleRevertSwap = (indexes) =>
     {
-        // const 
+        const itemsRemove = newdata[indexes];
+        setData([...adddata, itemsRemove]);
+
+        const revertData = newdata.filter((items, ii) => ii !== indexes);
+        setSwapData(revertData);
     }
 
     return (
